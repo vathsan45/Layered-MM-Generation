@@ -1,0 +1,741 @@
+{
+  "name": "Untitled topology",
+  "dials": {
+    "gate": "puzzle",
+    "decoy": "single",
+    "recontext": "none",
+    "res": "coupled"
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "entry",
+      "label": "Entry",
+      "x": 1746,
+      "y": 1251,
+      "streamId": null,
+      "notes": ""
+    },
+    {
+      "id": "n2",
+      "type": "spine",
+      "label": "Spine",
+      "x": 1743,
+      "y": 1348,
+      "streamId": null,
+      "notes": ""
+    },
+    {
+      "id": "n3",
+      "type": "spine",
+      "label": "Spine",
+      "x": 1777,
+      "y": 1460,
+      "streamId": null,
+      "notes": ""
+    },
+    {
+      "id": "n4",
+      "type": "terminus",
+      "label": "Terminus",
+      "x": 1756,
+      "y": 1587,
+      "streamId": null,
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "src": "n1",
+      "tgt": "n2",
+      "type": "prereq"
+    },
+    {
+      "id": "e2",
+      "src": "n2",
+      "tgt": "n3",
+      "type": "prereq"
+    },
+    {
+      "id": "e3",
+      "src": "n3",
+      "tgt": "n4",
+      "type": "prereq"
+    }
+  ],
+  "streams": [],
+  "nodeIdCounter": 5,
+  "edgeIdCounter": 4,
+  "streamIdCounter": 1,
+  "genState": {
+    "currentStep": 7,
+    "stepStatus": {
+      "2": "complete",
+      "3": "complete",
+      "4": "complete",
+      "5": "complete",
+      "6": "complete",
+      "7": "complete",
+      "3.5": "complete",
+      "4.5": "complete"
+    },
+    "stepData": {
+      "2": {
+        "nodes": {
+          "n1": {
+            "receives": [],
+            "produces": [
+              "initial mystery context"
+            ],
+            "forbidden_to_reveal": [
+              "killer's identity",
+              "motive"
+            ],
+            "delegated_guarantees": [
+              "coherent storyline",
+              "consistent character actions"
+            ]
+          },
+          "n2": {
+            "receives": [
+              "initial mystery context"
+            ],
+            "produces": [
+              "first plot twist",
+              "introduction of suspects"
+            ],
+            "forbidden_to_reveal": [
+              "key evidence",
+              "major plot turns"
+            ],
+            "delegated_guarantees": [
+              "logical suspect introductions",
+              "plot twist consistency"
+            ]
+          },
+          "n3": {
+            "receives": [
+              "first plot twist",
+              "introduction of suspects"
+            ],
+            "produces": [
+              "mid-story revelations",
+              "red herrings"
+            ],
+            "forbidden_to_reveal": [
+              "final mystery solution",
+              "critical clues"
+            ],
+            "delegated_guarantees": [
+              "red herring believability",
+              "mid-story tension"
+            ]
+          },
+          "n4": {
+            "receives": [
+              "mid-story revelations",
+              "red herrings"
+            ],
+            "produces": [
+              "final mystery solution",
+              "explanation of clues"
+            ],
+            "forbidden_to_reveal": [],
+            "delegated_guarantees": [
+              "consistent mystery resolution",
+              "satisfying conclusion"
+            ]
+          }
+        }
+      },
+      "3": {
+        "premise": "In the gritty, rain-soaked streets of 1940s New Haven, reclusive millionaire and former bootlegger, Harrison Green, lies dead in his opulent, fortress-like mansion, the victim of a seemingly impossible crime: a single bullet wound to the head, with no signs of forced entry or exit, and all doors and windows sealed from the inside. The cast of suspects is as complex as it is suspicious, including Green's embattled business partner, S1: Victor LaGraine; S2: Evelyn Stone, Green's enigmatic and alluring mistress; S3: Dr. Sophia Patel, a soft-spoken yet sharp-witted psychologist with a hidden past; S4: Jack 'The Bull' Murphy, a hulking, brooding ex-con with a history of violence; S5: Lila Rose, a cunning and ambitious journalist investigating Green's shady dealings; and S6: Detective James 'Hawk' Wilson, a grizzled, hard-boiled investigator with a personal vendetta against Green. As the investigation unfolds, the dark, suspenseful atmosphere thickens, like the fog rolling in off the nearby harbor, shrouding the truth in an impenetrable veil of secrets, lies, and motives, each one more tangled and sinister than the last."
+      },
+      "4": {
+        "timeline_stages": [
+          "pre-murder",
+          "crime scene discovery",
+          "investigation",
+          "mid-investigation revelations",
+          "final confrontation"
+        ],
+        "actors": {
+          "Harrison Green": {
+            "timeline": [
+              {
+                "stage": "pre-murder",
+                "known_truths": [
+                  "existence of will (D1)",
+                  "existence of codicil (D2)",
+                  "contents of archive (A1)",
+                  "state of bank account (F1)"
+                ],
+                "source": "personal knowledge",
+                "suppressed": false
+              }
+            ]
+          },
+          "Victor LaGraine": {
+            "timeline": [
+              {
+                "stage": "pre-murder",
+                "known_truths": [
+                  "romantic relationship with Evelyn Stone (R1)",
+                  "business partnership with Harrison Green"
+                ],
+                "source": "personal involvement",
+                "suppressed": false
+              },
+              {
+                "stage": "investigation",
+                "known_truths": [
+                  "existence of will (D1) favoring Evelyn Stone"
+                ],
+                "source": "detective questioning",
+                "suppressed": true
+              }
+            ]
+          },
+          "Evelyn Stone": {
+            "timeline": [
+              {
+                "stage": "pre-murder",
+                "known_truths": [
+                  "romantic relationship with Victor LaGraine (R1)",
+                  "named in Harrison Green's will (D1)"
+                ],
+                "source": "personal involvement",
+                "suppressed": false
+              }
+            ]
+          },
+          "Dr. Sophia Patel": {
+            "timeline": [
+              {
+                "stage": "pre-murder",
+                "known_truths": [
+                  "therapist-patient relationship with Jack 'The Bull' Murphy (R2)"
+                ],
+                "source": "professional confidentiality",
+                "suppressed": true
+              }
+            ]
+          },
+          "Jack 'The Bull' Murphy": {
+            "timeline": [
+              {
+                "stage": "pre-murder",
+                "known_truths": [
+                  "therapist-patient relationship with Dr. Sophia Patel (R2)"
+                ],
+                "source": "personal involvement",
+                "suppressed": false
+              }
+            ]
+          },
+          "Lila Rose": {
+            "timeline": [
+              {
+                "stage": "pre-murder",
+                "known_truths": [
+                  "professional rivalry with Detective James 'Hawk' Wilson (R3)"
+                ],
+                "source": "personal experience",
+                "suppressed": false
+              },
+              {
+                "stage": "mid-investigation revelations",
+                "known_truths": [
+                  "alibi during crime time contradicting false resolution"
+                ],
+                "source": "investigative journalism",
+                "suppressed": false
+              }
+            ]
+          },
+          "Detective James 'Hawk' Wilson": {
+            "timeline": [
+              {
+                "stage": "crime scene discovery",
+                "known_truths": [
+                  "locked room scenario",
+                  "existence of hidden passage (locked_room_invariant)"
+                ],
+                "source": "crime scene investigation",
+                "suppressed": false
+              },
+              {
+                "stage": "investigation",
+                "known_truths": [
+                  "financial motives (P_financial) of suspects",
+                  "digital evidence (P_digital) pointing to himself"
+                ],
+                "source": "evidence collection and analysis",
+                "suppressed": true
+              },
+              {
+                "stage": "final confrontation",
+                "known_truths": [
+                  "personal vendetta motive (true_solution_framework)",
+                  "discovery of dark secret triggering the murder"
+                ],
+                "source": "self-reflection and case resolution",
+                "suppressed": false
+              }
+            ]
+          }
+        }
+      },
+      "5": {
+        "facts": {
+          "F1": {
+            "statement": "Harrison Green was a reclusive millionaire and former bootlegger.",
+            "entity_refs": [
+              "V1"
+            ],
+            "first_visible_at": "n1",
+            "visibility": "explicit",
+            "importance": "high"
+          },
+          "F2": {
+            "statement": "Lila Rose wrote an article discussing the case and her investigative findings.",
+            "entity_refs": [
+              "S5",
+              "E7"
+            ],
+            "first_visible_at": "n2",
+            "visibility": "explicit",
+            "importance": "medium"
+          },
+          "F3": {
+            "statement": "A torn will fragment was found in the Green Estate, hinting at a changed inheritance.",
+            "entity_refs": [
+              "E1",
+              "D1",
+              "S2"
+            ],
+            "first_visible_at": "n2",
+            "visibility": "explicit",
+            "importance": "medium"
+          },
+          "F4": {
+            "statement": "A suspicious transaction log was discovered, showing large transactions from Harrison Green's bank account to an unknown recipient.",
+            "entity_refs": [
+              "E3",
+              "F1",
+              "S1"
+            ],
+            "first_visible_at": "n2",
+            "visibility": "explicit",
+            "importance": "medium"
+          },
+          "F5": {
+            "statement": "A threatening letter was sent to Harrison Green, threatening to reveal a dark secret if certain demands were not met.",
+            "entity_refs": [
+              "E4",
+              "V1",
+              "S6"
+            ],
+            "first_visible_at": "n3",
+            "visibility": "implicit",
+            "importance": "high"
+          },
+          "F6": {
+            "statement": "A digital footprint led to Detective James 'Hawk' Wilson's personal device, containing evidence of the investigation.",
+            "entity_refs": [
+              "E5",
+              "S6",
+              "P_digital"
+            ],
+            "first_visible_at": "n3",
+            "visibility": "implicit",
+            "importance": "high"
+          },
+          "F7": {
+            "statement": "A fingerprint was found on the archive containing incriminating documents.",
+            "entity_refs": [
+              "E6",
+              "A1",
+              "V1",
+              "S1"
+            ],
+            "first_visible_at": "n3",
+            "visibility": "implicit",
+            "importance": "medium"
+          },
+          "F8": {
+            "statement": "Security camera footage showed Jack 'The Bull' Murphy near the Green Estate on the night of the murder.",
+            "entity_refs": [
+              "E8",
+              "S4",
+              "L1"
+            ],
+            "first_visible_at": "n3",
+            "visibility": "implicit",
+            "importance": "medium"
+          },
+          "F9": {
+            "statement": "Detective James 'Hawk' Wilson discovered a hidden passage in the private study, explaining the locked room scenario.",
+            "entity_refs": [
+              "E2",
+              "S6",
+              "L2"
+            ],
+            "first_visible_at": "n4",
+            "visibility": "explicit",
+            "importance": "critical"
+          },
+          "F10": {
+            "statement": "The true killer was Detective James 'Hawk' Wilson, who had a personal vendetta against Harrison Green.",
+            "entity_refs": [
+              "S6",
+              "true_solution_framework"
+            ],
+            "first_visible_at": "n4",
+            "visibility": "explicit",
+            "importance": "critical"
+          }
+        },
+        "node_allocations": {
+          "n1": [
+            "F1"
+          ],
+          "n2": [
+            "F2",
+            "F3",
+            "F4"
+          ],
+          "n3": [
+            "F5",
+            "F6",
+            "F7",
+            "F8"
+          ],
+          "n4": [
+            "F9",
+            "F10"
+          ]
+        }
+      },
+      "6": {
+        "n1": "The rain-soaked streets of New Haven Harbor seemed to whisper secrets to the fog that clung to them like a damp shroud. It was a night that made a man want to stay indoors, to lock his doors and wait for the dawn. But for Detective James 'Hawk' Wilson, this was a night that would unravel the threads of a mystery, one that began with the enigmatic figure of Harrison Green, a reclusive millionaire and former bootlegger, whose life was as shrouded in mystery as the harbor itself. The mere mention of his name commanded a certain reverence, a blend of awe and fear that spoke of a man who had lived a life on the edge, where the lines between right and wrong were often blurred. As the detective stood at the threshold of the Green Estate, a fortress-like opulence that loomed over the harbor, he couldn't help but wonder what secrets lay hidden behind its sealed and secure walls, secrets that only the night, with its relentless rain and impenetrable fog, seemed to understand.",
+        "n2": "As Detective James 'Hawk' Wilson stepped into the Green Estate, the opulent interior seemed to swallow him whole, its grandeur a stark contrast to the darkness that had befallen its owner. The air was thick with the scent of old books and smoke, a reminder of the countless nights Harrison Green had spent within these walls, weaving his empire. It was here, among the shadows of his fortress-like home, that the first whispers of a larger mystery began to emerge. A torn will fragment, discovered in a hidden compartment, hinted at a changed inheritance, its implications as murky as the harbor outside. The name of Evelyn Stone, Green's enigmatic mistress, was whispered in connection to this newfound clue, her role in the millionaire's life as mysterious as the fog that clung to the harbor's streets. Meanwhile, the sound of rain pattering against the windows served as a somber backdrop to the detective's thoughts, a reminder that time was as much an enemy as the killer they sought. The discovery of a suspicious transaction log, detailing large sums transferred from Green's account to an unknown recipient, further complicated the web of motives and alibis. Victor LaGraine, Green's embattled business partner, was among those whose name surfaced in connection to these transactions, his involvement as questionable as the true nature of their partnership. And then, there was the article by Lila Rose, a journalist known for her cunning, which had recently shed light on the case, weaving a narrative that was as intriguing as it was misleading. Each new piece of information was a thread in a tapestry of deceit and betrayal, and the detective knew that unraveling them would be the key to solving the mystery that had claimed Harrison Green's life.",
+        "n3": "As Detective James 'Hawk' Wilson delved deeper into the mystery of Harrison Green's demise, the shadows within the Green Estate seemed to grow longer, as if they themselves were trying to conceal the truth. It was then that he stumbled upon a letter, its words dripping with malice, threatening to unveil a dark secret unless certain demands were met. The letter, though unsigned, carried an air of foreboding, its presence as unsettling as the fog that clung to the harbor outside. Wilson's eyes narrowed, his mind racing with the implications, as he realized that this letter might be the first tangible thread in a complex web of motives and alibis. Meanwhile, a digital footprint, faint but unmistakable, led to his own personal device, a discovery that raised more questions than answers, its significance as murky as the waters of New Haven Harbor. A fingerprint, found on an archive containing documents that could incriminate, seemed to point to Victor LaGraine, Green's embattled business partner, though the detective knew that in a case as complex as this, nothing was as it seemed. And then, there was the security footage, showing Jack 'The Bull' Murphy lurking near the estate on the night of the murder, his presence as ominous as the rain that continued to fall, relentless and unyielding.",
+        "n4": "As Detective James 'Hawk' Wilson stood in the private study, the sealed and secure walls seemed to close in around him, the air thick with the weight of secrets. It was here, in this fortress of solitude, that the mystery of Harrison Green's death had reached its most baffling impasse. The locked room scenario, once thought impenetrable, now lay before him like an open book, its pages turned by the discovery of a hidden passage, cleverly concealed behind a bookshelf. The passage, narrow and winding, told the tale of a killer who had planned meticulously, leaving behind no trail, or so it had seemed. Wilson's eyes narrowed as he realized that this passage was more than just a means of escape; it was a testament to the cunning of the true killer, a mind that had outwitted even the most secure of spaces. And then, it hit him - the truth, stark and unyielding, like the rain that continued to fall outside. The true killer was not some faceless figure, but one who had stood among them all along, a mastermind of deception, none other than Detective James 'Hawk' Wilson himself, driven by a personal vendetta against the reclusive millionaire. The revelation hung in the air, a challenge to the very fabric of justice, as the detective's gaze fell upon his own reflection, the face of the killer staring back, a haunting reminder that sometimes, the most impossible of crimes are those closest to us."
+      },
+      "7": {
+        "pass": true,
+        "checks": [
+          {
+            "name": "Topology Compliance",
+            "status": "PASS",
+            "comments": "Each node honors its contract by receiving, producing, and not revealing forbidden information as specified in the contracts ledger.",
+            "failure_origin_layer": null
+          },
+          {
+            "name": "Knowledge Consistency",
+            "status": "PASS",
+            "comments": "The prose respects who knows what and when, aligning with the knowledge ledger's timeline stages and actor knowledge.",
+            "failure_origin_layer": null
+          },
+          {
+            "name": "Clue Fairness",
+            "status": "PASS",
+            "comments": "All allocated evidence is generated and presented fairly, with no critical clues withheld or introduced without prior setup.",
+            "failure_origin_layer": null
+          },
+          {
+            "name": "Uniqueness",
+            "status": "PASS",
+            "comments": "The story narrows down to exactly one candidate, Detective James 'Hawk' Wilson, as the true killer, satisfying the uniqueness condition.",
+            "failure_origin_layer": null
+          },
+          {
+            "name": "Branch Usefulness",
+            "status": "PASS",
+            "comments": "Both deduction branches are referenced in the final resolution, ensuring that the investigation's progression is logical and coherent.",
+            "failure_origin_layer": null
+          },
+          {
+            "name": "Contradictions",
+            "status": "PASS",
+            "comments": "No factual contradictions are found between the different layers of information, maintaining consistency throughout the narrative.",
+            "failure_origin_layer": null
+          }
+        ]
+      },
+      "3.5": {
+        "world_bible": {
+          "locations": {
+            "L1": {
+              "name": "Green Estate",
+              "type": "estate",
+              "properties": [
+                "fortress-like",
+                "opulent"
+              ]
+            },
+            "L2": {
+              "name": "Private Study",
+              "type": "study",
+              "properties": [
+                "sealed",
+                "secure"
+              ]
+            },
+            "L3": {
+              "name": "New Haven Harbor",
+              "type": "harbor",
+              "properties": [
+                "foggy",
+                "rainy"
+              ]
+            }
+          },
+          "victim": {
+            "id": "V1",
+            "name": "Harrison Green",
+            "role": "victim",
+            "occupation": "reclusive millionaire and former bootlegger",
+            "owner_of": [
+              "D1",
+              "D2",
+              "A1",
+              "F1"
+            ]
+          },
+          "suspects": [
+            {
+              "id": "S1",
+              "name": "Victor LaGraine",
+              "role": "business partner",
+              "relationship": "embattled",
+              "herring_candidate": true
+            },
+            {
+              "id": "S2",
+              "name": "Evelyn Stone",
+              "role": "mistress",
+              "relationship": "enigmatic"
+            },
+            {
+              "id": "S3",
+              "name": "Dr. Sophia Patel",
+              "role": "psychologist",
+              "relationship": "sharp-witted"
+            },
+            {
+              "id": "S4",
+              "name": "Jack 'The Bull' Murphy",
+              "role": "ex-con",
+              "relationship": "violent"
+            },
+            {
+              "id": "S5",
+              "name": "Lila Rose",
+              "role": "journalist",
+              "relationship": "cunning",
+              "false_resolution_candidate": true
+            },
+            {
+              "id": "S6",
+              "name": "Detective James 'Hawk' Wilson",
+              "role": "detective",
+              "relationship": "grizzled",
+              "true_killer": true
+            }
+          ]
+        },
+        "estate_assets": {
+          "D1": {
+            "type": "will",
+            "content": "majority of estate to S2"
+          },
+          "D2": {
+            "type": "codicil",
+            "content": "exception for S1"
+          },
+          "A1": {
+            "type": "archive",
+            "content": "incriminating documents"
+          },
+          "F1": {
+            "type": "bank account",
+            "content": "large sum of money"
+          }
+        },
+        "relationship_truths": {
+          "R1": {
+            "id": "S1-S2",
+            "nature": "romantic"
+          },
+          "R2": {
+            "id": "S3-S4",
+            "nature": "therapist-patient"
+          },
+          "R3": {
+            "id": "S5-S6",
+            "nature": "professional rivalry"
+          }
+        },
+        "candidate_properties": {
+          "P_financial": [
+            "S1",
+            "S5",
+            "S6"
+          ],
+          "P_digital": [
+            "S6"
+          ]
+        },
+        "branch_allocations": {
+          "B1": {
+            "property": "P_financial",
+            "allocated_to": [
+              "S1",
+              "S5"
+            ]
+          },
+          "B2": {
+            "property": "P_digital",
+            "allocated_to": [
+              "S6"
+            ]
+          }
+        },
+        "red_herring_contract": {
+          "motive": "greed",
+          "properties": [
+            "P_financial"
+          ],
+          "herring_candidate": "S1"
+        },
+        "false_resolution_contract": {
+          "candidate": "S5",
+          "motive": "revenge",
+          "contradiction": "alibi during crime time"
+        },
+        "true_solution_framework": {
+          "killer": "S6",
+          "trigger_event": "discovery of dark secret",
+          "motive": "personal vendetta"
+        },
+        "locked_room_invariant": {
+          "explanation": "hidden passage",
+          "compatible_with": "locked room"
+        },
+        "topology_proofs": {
+          "GG1": {
+            "description": "unique_intersection",
+            "P_financial": [
+              "S1",
+              "S5",
+              "S6"
+            ],
+            "P_digital": [
+              "S6"
+            ],
+            "intersection": [
+              "S6"
+            ],
+            "cardinality": 1,
+            "status": "PASS"
+          }
+        }
+      },
+      "4.5": {
+        "evidence_traces": {
+          "E1": {
+            "name": "Torn Will Fragment",
+            "description": "A piece of paper with a partial will, hinting at a changed inheritance",
+            "location": "L1",
+            "causal_knowledge_ref": "Harrison Green knew about the will (D1) and attempted to change it, leading to a torn fragment being left behind",
+            "associated_entities": [
+              "V1",
+              "D1",
+              "S2"
+            ]
+          },
+          "E2": {
+            "name": "Hidden Passage Discovery",
+            "description": "A hidden passage found in the private study, explaining the locked room scenario",
+            "location": "L2",
+            "causal_knowledge_ref": "Detective James 'Hawk' Wilson knew about the locked room scenario and discovered the hidden passage, understanding its significance",
+            "associated_entities": [
+              "S6",
+              "L2",
+              "locked_room_invariant"
+            ]
+          },
+          "E3": {
+            "name": "Suspicious Transaction Log",
+            "description": "A record of large transactions from Harrison Green's bank account (F1) to an unknown recipient",
+            "location": "L1",
+            "causal_knowledge_ref": "Harrison Green knew about his financial situation and made large transactions, which were later discovered",
+            "associated_entities": [
+              "V1",
+              "F1",
+              "S1"
+            ]
+          },
+          "E4": {
+            "name": "Threatening Letter",
+            "description": "A letter sent to Harrison Green, threatening to reveal a dark secret if certain demands were not met",
+            "location": "L1",
+            "causal_knowledge_ref": "The sender knew about Harrison Green's dark secret and sent the letter to blackmail him",
+            "associated_entities": [
+              "V1",
+              "S6",
+              "true_solution_framework"
+            ]
+          },
+          "E5": {
+            "name": "Digital Footprint",
+            "description": "A digital trail leading to Detective James 'Hawk' Wilson's personal device, containing evidence of the investigation",
+            "location": "L2",
+            "causal_knowledge_ref": "Detective James 'Hawk' Wilson knew about the digital evidence (P_digital) and accessed it during the investigation",
+            "associated_entities": [
+              "S6",
+              "P_digital",
+              "B2"
+            ]
+          },
+          "E6": {
+            "name": "Fingerprint on Archive",
+            "description": "A fingerprint found on the archive (A1) containing incriminating documents",
+            "location": "L1",
+            "causal_knowledge_ref": "The person who touched the archive knew about its contents and handled it, leaving a fingerprint behind",
+            "associated_entities": [
+              "A1",
+              "V1",
+              "S1"
+            ]
+          },
+          "E7": {
+            "name": "Newspaper Article",
+            "description": "An article written by Lila Rose, discussing the case and her investigative findings",
+            "location": "L3",
+            "causal_knowledge_ref": "Lila Rose knew about the case and wrote the article to share her findings and create a false lead",
+            "associated_entities": [
+              "S5",
+              "false_resolution_contract",
+              "R3"
+            ]
+          },
+          "E8": {
+            "name": "Security Camera Footage",
+            "description": "Footage showing Jack 'The Bull' Murphy near the Green Estate on the night of the murder",
+            "location": "L1",
+            "causal_knowledge_ref": "Jack 'The Bull' Murphy knew about the security cameras and was caught on tape, which was later discovered",
+            "associated_entities": [
+              "S4",
+              "L1",
+              "R2"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

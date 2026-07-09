@@ -1,0 +1,12 @@
+{
+  "name": "deduction-topology-mystery-engine",
+  "version": "1.0.0",
+  "description": "Professional Mystery Story Generation Engine and DAG editor",
+  "scripts": {
+    "install-all": "npm --prefix backend install",
+    "start": "npm --prefix backend start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

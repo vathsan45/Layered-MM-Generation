@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deduction Topology Editor [CYBER_SHELL]</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-dot"></div>
+      <div class="brand-text">[SYS] <span style="color: var(--accent-2);">DEDUCTION</span>_TOPOLOGY<span class="cursor-blink">_</span></div>
+    </div>
+    <input type="text" class="proj-name" id="proj-name" value="Untitled topology" />
+    <div class="sep"></div>
+    
+    <div class="group">
+      <span class="lbl">Spine</span>
+      <div id="topbar-select-gate"></div>
+    </div>
+    <div class="group">
+      <span class="lbl">Decoys</span>
+      <div id="topbar-select-decoy"></div>
+    </div>
+    <div class="group">
+      <span class="lbl">Recontext</span>
+      <div id="topbar-select-recontext"></div>
+    </div>
+    <div class="group">
+      <span class="lbl">Resolution</span>
+      <div id="topbar-select-res"></div>
+    </div>
+    
+    <div class="sep"></div>
+    <div class="toggle">
+      <button data-mode="select" class="on" id="mode-select">Select</button>
+      <button data-mode="connect" id="mode-connect">Connect</button>
+    </div>
+    <div class="sep"></div>
+    <button class="btn" id="btn-undo" title="Undo">↶</button>
+    <button class="btn" id="btn-redo" title="Redo">↷</button>
+    <button class="btn" id="btn-clear">Clear</button>
+    <div class="spacer"></div>
+    <button class="btn" id="btn-load">Load</button>
+    <button class="btn" id="btn-export">Export</button>
+    <button class="btn primary" id="btn-save">Save</button>
+  </div>
+
+  <!-- Left Palette Sidebar -->
+  <div class="palette" id="palette"></div>
+  <button class="sidebar-toggle" id="toggle-palette">◀</button>
+
+  <!-- Canvas Container -->
+  <div class="canvas-wrap">
+    <svg id="svg" width="3000" height="3000" viewBox="0 0 3000 3000" preserveAspectRatio="xMinYMin meet">
+      <defs>
+        <!-- Canvas SVG Tech Grid (Cyan/Rose Cyber grid layout) -->
+        <pattern id="grid-pattern" width="50" height="50" patternUnits="userSpaceOnUse">
+          <circle cx="25" cy="25" r="1.5" fill="rgba(0, 240, 255, 0.25)" />
+          <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(0, 240, 255, 0.05)" stroke-width="1.25" />
+        </pattern>
+        <!-- Edge Markers -->
+        <marker id="arr-prereq" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1.5 L8 5 L0 8.5 z" fill="#a1a1a8"/></marker>
+        <marker id="arr-andin" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1.5 L8 5 L0 8.5 z" fill="#3da5ff"/></marker>
+        <marker id="arr-orin" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1.5 L8 5 L0 8.5 z" fill="#5dcdff"/></marker>
+        <marker id="arr-elim" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1.5 L8 5 L0 8.5 z" fill="#ff007f"/></marker>
+        <marker id="arr-contra" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1.5 L8 5 L0 8.5 z" fill="#ff4a70"/></marker>
+        <marker id="arr-recontext" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1.5 L8 5 L0 8.5 z" fill="#ff9d5c"/></marker>
+        <marker id="arr-decoy" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1.5 L8 5 L0 8.5 z" fill="#8b8b95"/></marker>
+        <marker id="arr-time" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1.5 L8 5 L0 8.5 z" fill="#00ffcc"/></marker>
+      </defs>
+      <!-- Infinite Pattern Grid -->
+      <rect id="grid-rect" width="100000" height="100000" x="-50000" y="-50000" fill="url(#grid-pattern)" pointer-events="none" />
+      <g id="edges"></g>
+      <g id="nodes"></g>
+      <g id="temp"></g>
+    </svg>
+  </div>
+
+  <!-- Right Inspector/Generator Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-tabs">
+      <button class="sidebar-tab active" id="tab-inspector">Inspector</button>
+      <button class="sidebar-tab" id="tab-generator">Generator</button>
+    </div>
+
+    <!-- Inspector Tab Content -->
+    <div id="inspector-tab-content">
+      <div class="stats" id="stats"></div>
+      <h4>Inspector</h4>
+      <div id="inspector-body" class="empty">Nothing selected.</div>
+      <h4>Streams</h4>
+      <div class="streams-list" id="streams"></div>
+      <button class="btn" id="add-stream">+ New stream</button>
+      <h4>Shortcuts</h4>
+      <div class="shortcuts">
+        <span class="k">Delete</span><kbd>Del</kbd>
+        <span class="k">Undo</span><kbd>⌘Z</kbd>
+        <span class="k">Redo</span><kbd>⌘⇧Z</kbd>
+        <span class="k">Connect</span><kbd>C</kbd>
+        <span class="k">Select</span><kbd>S</kbd>
+        <span class="k">Deselect</span><kbd>Esc</kbd>
+      </div>
+    </div>
+
+    <!-- Generator Tab Content -->
+    <div id="generator-tab-content" style="display: none;" class="gen-container">
+      <div class="gen-scroll-area">
+        <!-- Configuration settings -->
+        <div class="gen-section">
+          <h5>Mystery Parameters</h5>
+          <div class="field" style="margin-bottom: 8px;">
+            <label>Mystery Genre</label>
+            <select id="gen-genre" style="width:100%; height:28px; background:rgba(0,0,0,0.4); border:1px solid var(--border-light); border-radius:var(--radius-sm); color:var(--text-primary); padding: 0 8px; font-family: inherit; font-size: 10px;">
+              <option value="Locked Room / Impossible Crime">Locked Room / Impossible Crime</option>
+              <option value="Cozy Whodunit">Cozy Whodunit</option>
+              <option value="Noir / Hard-boiled Detective">Noir / Hard-boiled Detective</option>
+              <option value="Sci-Fi Mystery">Sci-Fi Mystery</option>
+              <option value="Gothic Murder Mystery">Gothic Murder Mystery</option>
+              <option value="Corporate Thriller">Corporate Thriller</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom: 8px;">
+            <label>Thematic Tone</label>
+            <select id="gen-tone" style="width:100%; height:28px; background:rgba(0,0,0,0.4); border:1px solid var(--border-light); border-radius:var(--radius-sm); color:var(--text-primary); padding: 0 8px; font-family: inherit; font-size: 10px;">
+              <option value="Dark & Analytical">Dark & Analytical</option>
+              <option value="Gritty & Suspenseful">Gritty & Suspenseful</option>
+              <option value="Intellectual & Fair-Play">Intellectual & Fair-Play</option>
+              <option value="Whimsical & Eccentric">Whimsical & Eccentric</option>
+              <option value="Melodramatic & Gothic">Melodramatic & Gothic</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom: 8px;">
+            <label>Cultural Setting</label>
+            <select id="gen-setting" style="width:100%; height:28px; background:rgba(0,0,0,0.4); border:1px solid var(--border-light); border-radius:var(--radius-sm); color:var(--text-primary); padding: 0 8px; font-family: inherit; font-size: 10px;">
+              <option value="international">International Version</option>
+              <option value="indian">Indian Version</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom: 4px;">
+            <label>Groq Model</label>
+            <select id="gen-model" style="width:100%; height:28px; background:rgba(0,0,0,0.4); border:1px solid var(--border-light); border-radius:var(--radius-sm); color:var(--text-primary); padding: 0 8px; font-family: inherit; font-size: 10px;">
+              <option value="llama-3.3-70b-versatile">llama-3.3-70b-versatile (Recommended)</option>
+              <option value="llama-3.1-70b-versatile">llama-3.1-70b-versatile</option>
+              <option value="mixtral-8x7b-32768">mixtral-8x7b-32768</option>
+            </select>
+          </div>
+          <div class="key-config-row">
+            <span style="color: var(--text-muted);">API Key State: <span id="api-key-status" style="color: var(--success); font-weight:700;">Rotating Mode</span></span>
+            <span class="key-config-link" id="btn-custom-key">Setup Custom Key</span>
+          </div>
+        </div>
+
+        <!-- Step Timeline Navigation -->
+        <div class="steps-timeline">
+          <div class="step-node active" data-step="2" id="step-n-2" title="Layer 2: Contracts">L2</div>
+          <div class="step-node" data-step="3" id="step-n-3" title="Layer 3: Premise Seed">L3</div>
+          <div class="step-node" data-step="3.5" id="step-n-3.5" title="Layer 3.5: Truth Ledger">L3.5</div>
+          <div class="step-node" data-step="4" id="step-n-4" title="Layer 4: Knowledge Ledger">L4</div>
+          <div class="step-node" data-step="4.5" id="step-n-4.5" title="Layer 4.5: Evidence Ledger">L4.5</div>
+          <div class="step-node" data-step="5" id="step-n-5" title="Layer 5: Allocation Ledger">L5</div>
+          <div class="step-node" data-step="6" id="step-n-6" title="Layer 6: Node Prose">L6</div>
+          <div class="step-node" data-step="7" id="step-n-7" title="Layer 7: Consistency Verification">L7</div>
+        </div>
+
+        <!-- Active Generator Controls -->
+        <div class="gen-section">
+          <h5 id="active-step-title">Layer 2 — Contracts</h5>
+          <p id="active-step-desc" style="font-size:9.5px; color:var(--text-secondary); margin:0; line-height:1.4;">Derive logical constraints and downstream obligations for each node from the topology structure.</p>
+          <button class="cyber-btn" id="btn-generate-layer">Generate Contracts (Layer 2)</button>
+        </div>
+
+        <!-- Output Work Area -->
+        <div class="output-workspace">
+          <div class="output-header">
+            <span class="output-title" id="output-title">Layer 2 Output</span>
+            <div class="output-controls">
+              <button class="btn" id="btn-edit-layer-raw" style="font-size: 8px; padding: 2px 6px; height: 20px;">Edit JSON</button>
+            </div>
+          </div>
+          <div class="output-body" id="output-view-body">
+            <div class="empty" style="font-size: 10px; text-align: center; color: var(--text-muted); font-style: italic; padding: 30px 0;">No data generated yet. Click generate to begin.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cyber Terminal -->
+      <div class="cyber-terminal" id="gen-terminal">
+        <div class="t-log">[SYS] Cyber Generation Engine initialized. Ready to generate.</div>
+      </div>
+    </div>
+  </div>
+  <button class="sidebar-toggle" id="toggle-sidebar">▶</button>
+
+  <!-- Canvas Toolbar Overlay -->
+  <div class="canvas-toolbar">
+    <button id="tb-zoom-in" title="Zoom In">＋</button>
+    <button id="tb-zoom-out" title="Zoom Out">－</button>
+    <button id="tb-fit" title="Fit View">🎯</button>
+    <div class="tb-sep"></div>
+    <button id="tb-snap" title="Toggle Snap to Grid">🧲</button>
+    <button id="tb-grid" title="Toggle Grid Lines" class="active">🌐</button>
+    <button id="tb-minimap" title="Toggle Minimap" class="active">🗺️</button>
+  </div>
+
+  <!-- Live Minimap Card -->
+  <div class="minimap-card" id="minimap-card">
+    <div class="minimap-header">Minimap</div>
+    <svg id="minimap-svg">
+      <rect id="mini-viewport" fill="rgba(0, 240, 255, 0.04)" stroke="var(--accent)" stroke-width="1.5" />
+      <g id="mini-nodes"></g>
+    </svg>
+  </div>
+
+  <!-- Collapsible Diagnostics Card -->
+  <div class="validator-card" id="validator-card">
+    <div class="validator-header" id="validator-header">
+      <div class="title-group">
+        <span class="pulse-indicator" id="validator-status-dot"></span>
+        <h4>Diagnostics</h4>
+        <span class="diagnostic-badge" id="validator-count-badge">0 Issues</span>
+      </div>
+      <button class="toggle-btn" id="validator-toggle-btn">▲</button>
+    </div>
+    <div class="validator-content" id="validator"></div>
+  </div>
+</div>
+
+<div id="modal-host"></div>
+<div id="toast-container"></div>
+
+<!-- Scripts -->
+<script src="js/editor.js"></script>
+<script src="js/generator.js"></script>
+</body>
+</html>
